@@ -1,0 +1,28 @@
+<div class="row">
+    </br>
+    <div class="col-lg-6">
+        <ngcart-cart></ngcart-cart>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                Redeem Loyality Points worth upto LKR {{ maxPoints() | number : 2 }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                 <span class="input-group-text">LKR</span>
+                </div>
+                <input type="number" ng-model="points" class="form-control" min="0" max="{{ maxPoints() }}" aria-label="Amount (to the nearest rupee)">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+            </div>
+            <div class="jumbotron">
+                <h1 class="display-6">Grand Total: LKR {{ grandTotal() | number : 2 }}</h1>
+                <p class="lead">
+                    <button class="btn btn-primary btn-lg" role="button" ng-disabled="!checkoutFormValid()" ng-click="placeOrder()">Place Order</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

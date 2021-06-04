@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="form-group col-lg-12">
+        <input class="form-control form-control-lg" type="text" placeholder="Search" ng-model="searchObj.text">
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Total</th>
+                <th scope="col">PointsRedeemed</th>
+                <th scope="col">Balance</th>
+                <th scope="col">TotalPaid</th>
+                <th scope="col">PointsEarned</th>
+                <th scope="col">PaymentMode</th>
+                <th scope="col">PaymentTime</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orders | filter : searchObj.text | orderBy:'-CreatedAt' ">
+                <th scope="row">{{ order.Id }}</th>
+                <td>{{ order.CreatedAt | date }}</td>
+                <td>{{ order.Total | number : 2 }}</td>
+                <td>{{ order.PointsEarned | number : 2 }}</td>
+                <td>{{ order.Balance | number : 2 }}</td>
+                <td ng-if="order.Balance >= 0.1" colspan="4" align="center">
+                    <button type="button" ng-click="navigateToPay(order.Id,order.Balance)" class="btn btn-success">Pay LKR {{ order.Balance | number : 2 }}</button>
+                </td>
+                <td ng-if="order.Balance < 0.1">{{ order.TotalPaid | number : 2 }}</td>
+                <td ng-if="order.Balance < 0.1">{{ order.PointsEarned | number : 2 }}</td>
+                <td ng-if="order.Balance < 0.1">{{ order.PaymentMode }}</td>
+                <td ng-if="order.Balance < 0.1">{{ order.PaymentTime | date }}</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

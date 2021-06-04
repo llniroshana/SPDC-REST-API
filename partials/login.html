@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" name="signInForm" novalidate ng-submit="signin(signInForm.$valid)">
+            <fieldset>
+            
+            <!-- Form Name -->
+            <legend>Login</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="textinput">Email Address</label>  
+                <div class="col-md-12">
+                <input ng-model="signinObj.email" ng-required="true" name="email" type="email" placeholder="Email Address" class="form-control input-md" ng-class="{'is-invalid':signInForm.email.$invalid && signInForm.email.$dirty}">
+                </div>
+            </div>
+            
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="passwordinput">Password Input</label>
+                <div class="col-md-12">
+                <input ng-model="signinObj.password" ng-required="true" name="password" type="password" placeholder="Password" class="form-control input-md" ng-class="{'is-invalid':signInForm.password.$invalid && signInForm.password.$dirty}">
+                </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="form-group">
+                <div class="col-md-12">
+                <button class="btn btn-primary" ng-disabled="submittingForm || !signInForm.$valid">Sign In</button>
+                </div>
+            </div>
+            
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-6">
+            <form class="form-horizontal" name="signUpForm" novalidate ng-submit="register(signUpForm.$valid)">
+                <fieldset>
+                
+                <!-- Form Name -->
+                <legend>Sign Up</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="textinput">Name</label>  
+                    <div class="col-md-12">
+                    <input ng-model="signupObj.name" maxlength="50" ng-required="true" name="name" type="text" placeholder="Your Name" class="form-control input-md" ng-class="{'is-invalid':signUpForm.name.$invalid && signUpForm.name.$dirty}">
+                    </div>
+                </div>
+    
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="textinput">Email Address</label>  
+                    <div class="col-md-12">
+                    <input ng-model="signupObj.email" maxlength="50" ng-required="true" name="email" type="email" placeholder="Email Address" class="form-control input-md" ng-class="{'is-invalid':signUpForm.email.$invalid && signUpForm.email.$dirty}">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="textinput">Phone Number</label>  
+                    <div class="col-md-12">
+                    <input ng-model="signupObj.phone" ng-required="true" name="phone" type="text" placeholder="+94XXXXXXXXX" class="form-control input-md" ng-class="{'is-invalid':signUpForm.phone.$invalid && signUpForm.phone.$dirty}" pattern="\+[0-9]{11}" title="+94XXXXXXXXX">
+                    </div>
+                </div>
+                
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="passwordinput">Password Input</label>
+                    <div class="col-md-12">
+                    <input ng-model="signupObj.password" ng-required="true" name="password" type="password" placeholder="Password" class="form-control input-md" ng-class="{'is-invalid':signUpForm.password.$invalid && signUpForm.password.$dirty}">
+                    </div>
+                </div>
+                
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                    <button class="btn btn-primary" ng-disabled="submittingForm || !signUpForm.$valid">Sign In</button>
+                    </div>
+                </div>
+                
+                </fieldset>
+            </form>
+        </div>
+</div>

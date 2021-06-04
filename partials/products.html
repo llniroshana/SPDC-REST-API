@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="form-group col-lg-12">
+        <input class="form-control form-control-lg" type="text" placeholder="Search" ng-model="searchObj.text">
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Measure</th>
+            <th scope="col">Price (LKR)</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products | filter : searchObj.text | orderBy:'Name' ">
+            <th scope="row">{{ product.Name }}</th>
+            <td>{{ product.Measure }}</td>
+            <td>{{ product.Price | number : 2 }}</td>
+            <td>
+                <ngcart-addtocart id="{{ product.Id }}" name="{{ product.Name }} ({{ product.Measure }})" price="{{ product.Price }}" quantity="1" quantity-max="{{ product.Stock }}"></ngcart-addtocart>
+            </td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

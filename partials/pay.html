@@ -1,0 +1,107 @@
+<div class="row">
+    </br>
+    <div class="panel panel-default col-md-6">
+        <div id="collapseTwo" class="panel-collapse in collapse show" >
+            <div class="panel-body">
+                <div class="row">
+                    <div>
+                        <h2>Summary</h2>
+                        <strong>Price</strong>: <span class="text-navy">LKR {{ amount | number : 2 }}</span>
+                        <fieldset class="form-group">
+                            <legend>Payment Method</legend>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                <input type="radio" ng-model="paymentOptions.method" class="form-check-input" name="optionsRadios" value="SAMPATH">
+                                    Pay via Sampath Bank
+                                </label>
+                            </div>
+                            <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" ng-model="paymentOptions.method" class="form-check-input" name="optionsRadios" value="DIALOG">
+                                    Pay with Dialog
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+            <div class="col-md-6" ng-show="paymentOptions.method==='SAMPATH'">
+                    <form role="form" name="ccForm" ng-submit="pay()" novalidate>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>CARD NUMBER</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" cc-number cc-eager-type name="ccNumber" ng-model="paymentOptions.cardNumber" ng-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-md-7">
+                                <div class="form-group">
+                                    <label>EXPIRATION DATE</label>
+                                    <div class="col-8">
+                                        <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="paymentOptions.expiryMonth" ng-required="true" placeholder="MM" >
+                                    </div>
+                                    <div class="col-8">
+                                        <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="paymentOptions.expiryYear" ng-required="true" placeholder="YY" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5 col-md-5 float-right">
+                                <div class="form-group">
+                                    <label>CV CODE</label>
+                                    <input type="text" class="form-control" ng-model="paymentOptions.cvv" placeholder="CVC" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc" ng-required="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>NAME ON CARD</label>
+                                    <input type="text" class="form-control" ng-model="paymentOptions.cardHolder" name="nameCard" placeholder="NAME AND SURNAME" ng-required="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit" ng-disabled="!ccForm.$valid || paying">{{ paying ? 'processing' : 'Pay Now' }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6" ng-show="paymentOptions.method==='DIALOG'">
+                    <form role="form" name="dialogForm" ng-submit="pay()" novalidate>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>DIALOG NUMBER</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="phoneNumber" ng-model="paymentOptions.phoneNumber" pattern="07[6|7][0-9]{7}" maxlength="10" title="0771234567 or 0761234567" ng-required="true">
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-md-7">
+                                <div class="form-group">
+                                    <label>PIN NUMBER</label>
+                                    <input type="password" ng-model="paymentOptions.pin" name="pin" class="form-control" pattern="[0-9]{4}" maxlength="4" name="Pin" placeholder="XXXX" ng-required="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-primary" ng-disabled="!dialogForm.$valid || paying" type="submit">{{ paying ? 'processing' : 'Pay Now' }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
